@@ -113,7 +113,7 @@ def main():
         from torch.serialization import add_safe_globals
         from torch.distributions import MixtureSameFamily
 
-        add_safe_globals({"MixtureSameFamily": MixtureSameFamily})
+        add_safe_globals([MixtureSameFamily])
     except Exception:
         pass
 
