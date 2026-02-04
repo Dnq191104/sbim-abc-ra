@@ -1,3 +1,25 @@
+# --- PyTorch 2.6+ checkpoint compatibility (sbibm/pyro objects in .pt files) ---
+import torch
+
+# 1) allowlist pyro MixtureSameFamily for safe weights-only unpickling
+try:
+    from pyro.distributions.torch import MixtureSameFamily
+    if hasattr(torch, "serialization") and hasattr(torch.serialization, "add_safe_globals"):
+        torch.serialization.add_safe_globals([MixtureSameFamily])
+except Exception:
+    pass
+
+# 2) fallback: force old behaviour if something still calls torch.load() without args
+_old_torch_load = torch.load
+
+
+def _torch_load(*args, **kwargs):
+    kwargs.setdefault("weights_only", False)   # trusted checkpoints only
+    return _old_torch_load(*args, **kwargs)
+
+
+torch.load = _torch_load
+
 import argparse
 import json
 import os
@@ -5,7 +27,6 @@ import time
 import hashlib
 import random
 import numpy as np
-import torch
 
 from sbibm.tasks import get_task
 from sbibm.metrics.c2st import c2st
@@ -107,16 +128,6 @@ def run_method(task, method: str, obs_id: int, budget: int, num_post: int, seed:
 
 
 def main():
-    # Allow safe deserialization of MixtureSameFamily used in reference posteriors.
-    try:
-        import pyro.distributions.torch  # noqa: F401
-        from torch.serialization import add_safe_globals
-        from torch.distributions import MixtureSameFamily
-
-        add_safe_globals([MixtureSameFamily])
-    except Exception:
-        pass
-
     parser = argparse.ArgumentParser()
     parser.add_argument("--task", required=True)
     parser.add_argument("--method", required=True, choices=sorted(METHODS))
