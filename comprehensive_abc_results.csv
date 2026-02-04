@@ -1,0 +1,41 @@
+task,observation,budget,seed,method,c2st,error,runtime_seconds,posterior_samples
+gaussian_linear,1,1000,0,rej_linear,,run_abc_ra() got an unexpected keyword argument 'lra_variant',,
+gaussian_linear,1,1000,0,rej_ridge,0.9917647242546082,,0.04811859130859375,200.0
+gaussian_linear,1,1000,0,rej_rf,0.9960784316062927,,4.4612579345703125,200.0
+gaussian_linear,1,1000,0,rej_mlp,0.998039186000824,,2.3113911151885986,200.0
+gaussian_linear,1,1000,0,smc_linear,0.981176495552063,,0.06006503105163574,200.0
+gaussian_linear,1,5000,0,rej_linear,,run_abc_ra() got an unexpected keyword argument 'lra_variant',,
+gaussian_linear,1,5000,0,rej_ridge,0.9898039102554321,,0.05442333221435547,200.0
+gaussian_linear,1,5000,0,rej_rf,0.9953921437263489,,2.3315508365631104,200.0
+gaussian_linear,1,5000,0,rej_mlp,0.9965686202049255,,2.226085662841797,200.0
+gaussian_linear,1,5000,0,smc_linear,0.981176495552063,,0.1015310287475586,200.0
+gaussian_linear,2,1000,0,rej_linear,,run_abc_ra() got an unexpected keyword argument 'lra_variant',,
+gaussian_linear,2,1000,0,rej_ridge,0.9899019598960876,,0.02406167984008789,200.0
+gaussian_linear,2,1000,0,rej_rf,0.9946078658103943,,2.294320583343506,200.0
+gaussian_linear,2,1000,0,rej_mlp,0.996666669845581,,2.8621232509613037,200.0
+gaussian_linear,2,1000,0,smc_linear,0.9802941083908081,,0.04853630065917969,200.0
+gaussian_linear,2,5000,0,rej_linear,,run_abc_ra() got an unexpected keyword argument 'lra_variant',,
+gaussian_linear,2,5000,0,rej_ridge,0.9902940988540649,,0.055847883224487305,200.0
+gaussian_linear,2,5000,0,rej_rf,0.9948039054870605,,2.494553565979004,200.0
+gaussian_linear,2,5000,0,rej_mlp,0.9944117665290833,,2.730065107345581,200.0
+gaussian_linear,2,5000,0,smc_linear,0.9801960587501526,,0.08086562156677246,200.0
+two_moons,1,1000,0,rej_linear,,run_abc_ra() got an unexpected keyword argument 'lra_variant',,
+two_moons,1,1000,0,rej_ridge,0.9803921580314636,,0.012000560760498047,200.0
+two_moons,1,1000,0,rej_rf,0.9967647194862366,,0.26900792121887207,200.0
+two_moons,1,1000,0,rej_mlp,0.9855882525444031,,0.19931912422180176,200.0
+two_moons,1,1000,0,smc_linear,0.994019627571106,,0.017947912216186523,200.0
+two_moons,1,5000,0,rej_linear,,run_abc_ra() got an unexpected keyword argument 'lra_variant',,
+two_moons,1,5000,0,rej_ridge,0.9803921580314636,,0.028073549270629883,200.0
+two_moons,1,5000,0,rej_rf,0.9997059106826782,,0.3011636734008789,200.0
+two_moons,1,5000,0,rej_mlp,0.9854902029037476,,0.2630932331085205,200.0
+two_moons,1,5000,0,smc_linear,0.9803921580314636,,0.08057093620300293,200.0
+two_moons,2,1000,0,rej_linear,,run_abc_ra() got an unexpected keyword argument 'lra_variant',,
+two_moons,2,1000,0,rej_ridge,0.9858823418617249,,0.0210113525390625,200.0
+two_moons,2,1000,0,rej_rf,0.9953921437263489,,0.4490368366241455,200.0
+two_moons,2,1000,0,rej_mlp,0.9927451014518738,,0.35441017150878906,200.0
+two_moons,2,1000,0,smc_linear,0.9943137168884277,,0.03289794921875,200.0
+two_moons,2,5000,0,rej_linear,,run_abc_ra() got an unexpected keyword argument 'lra_variant',,
+two_moons,2,5000,0,rej_ridge,0.9803921580314636,,0.03920102119445801,200.0
+two_moons,2,5000,0,rej_rf,0.998431384563446,,0.5385439395904541,200.0
+two_moons,2,5000,0,rej_mlp,0.9828431606292725,,0.23651719093322754,200.0
+two_moons,2,5000,0,smc_linear,0.9803921580314636,,0.12235546112060547,200.0

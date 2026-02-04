@@ -1,0 +1,391 @@
+task,observation,budget,seed,c2st,runtime_seconds,algorithm,error
+bernoulli_glm,1,1000,0,0.9869090914726257,0.1524977684020996,abc_ra,
+bernoulli_glm,1,10000,0,0.9837272763252258,1.1811370849609375,abc_ra,
+bernoulli_glm,1,100000,0,0.9356363415718079,11.954679250717163,abc_ra,
+bernoulli_glm,2,1000,0,0.9890909194946289,0.12052059173583984,abc_ra,
+bernoulli_glm,2,10000,0,0.9890000224113464,1.4512484073638916,abc_ra,
+bernoulli_glm,2,100000,0,0.9494545459747314,17.030683279037476,abc_ra,
+bernoulli_glm,3,1000,0,0.9879999756813049,0.23943686485290527,abc_ra,
+bernoulli_glm,3,10000,0,0.9855454564094543,2.1379334926605225,abc_ra,
+bernoulli_glm,3,100000,0,0.9332727193832397,21.33106255531311,abc_ra,
+bernoulli_glm,4,1000,0,0.9875454306602478,0.23571062088012695,abc_ra,
+bernoulli_glm,4,10000,0,0.9871818423271179,1.420586347579956,abc_ra,
+bernoulli_glm,4,100000,0,0.9330000281333923,18.256797552108765,abc_ra,
+bernoulli_glm,5,1000,0,0.995090901851654,0.10880494117736816,abc_ra,
+bernoulli_glm,5,10000,0,0.9898181557655334,1.2361984252929688,abc_ra,
+bernoulli_glm,5,100000,0,0.9529091119766235,12.495958089828491,abc_ra,
+bernoulli_glm,6,1000,0,0.9884545207023621,0.1670370101928711,abc_ra,
+bernoulli_glm,6,10000,0,0.9855454564094543,1.2350983619689941,abc_ra,
+bernoulli_glm,6,100000,0,0.9467272758483887,11.2246994972229,abc_ra,
+bernoulli_glm,7,1000,0,0.9881818294525146,0.3930330276489258,abc_ra,
+bernoulli_glm,7,10000,0,0.9900000095367432,4.264777421951294,abc_ra,
+bernoulli_glm,7,100000,0,0.9497272968292236,19.77094292640686,abc_ra,
+bernoulli_glm,8,1000,0,0.9864545464515686,0.1825253963470459,abc_ra,
+bernoulli_glm,8,10000,0,0.9809091091156006,2.19303035736084,abc_ra,
+bernoulli_glm,8,100000,0,0.9367272853851318,19.115341186523438,abc_ra,
+bernoulli_glm,9,1000,0,0.9868181943893433,0.19103670120239258,abc_ra,
+bernoulli_glm,9,10000,0,0.9869999885559082,1.8139257431030273,abc_ra,
+bernoulli_glm,9,100000,0,0.934181809425354,19.099760055541992,abc_ra,
+bernoulli_glm,10,1000,0,0.9890909194946289,0.4326016902923584,abc_ra,
+bernoulli_glm,10,10000,0,0.989545464515686,2.1756012439727783,abc_ra,
+bernoulli_glm,10,100000,0,0.9469090700149536,49.39426851272583,abc_ra,
+gaussian_linear,1,1000,0,0.9858182072639465,0.029526710510253906,abc_ra,
+gaussian_linear,1,10000,0,0.9868181943893433,0.06087899208068848,abc_ra,
+gaussian_linear,1,100000,0,0.9330909252166748,0.6853618621826172,abc_ra,
+gaussian_linear,2,1000,0,0.9875454306602478,0.02398371696472168,abc_ra,
+gaussian_linear,2,10000,0,0.9870908856391907,0.054560184478759766,abc_ra,
+gaussian_linear,2,100000,0,0.9419999718666077,0.606316089630127,abc_ra,
+gaussian_linear,3,1000,0,0.9869999885559082,0.02300238609313965,abc_ra,
+gaussian_linear,3,10000,0,0.9887272715568542,0.05314993858337402,abc_ra,
+gaussian_linear,3,100000,0,0.9364545345306396,0.6247861385345459,abc_ra,
+gaussian_linear,4,1000,0,0.9877272844314575,0.03399825096130371,abc_ra,
+gaussian_linear,4,10000,0,0.9864545464515686,0.11349296569824219,abc_ra,
+gaussian_linear,4,100000,0,0.9226363897323608,0.941443681716919,abc_ra,
+gaussian_linear,5,1000,0,0.9881818294525146,0.038596153259277344,abc_ra,
+gaussian_linear,5,10000,0,0.9886363744735718,0.18773794174194336,abc_ra,
+gaussian_linear,5,100000,0,0.9365454316139221,0.741931676864624,abc_ra,
+gaussian_linear,6,1000,0,0.9886363744735718,0.035043954849243164,abc_ra,
+gaussian_linear,6,10000,0,0.989545464515686,0.11299681663513184,abc_ra,
+gaussian_linear,6,100000,0,0.9295454621315002,1.231276035308838,abc_ra,
+gaussian_linear,7,1000,0,0.9879090785980225,0.037464141845703125,abc_ra,
+gaussian_linear,7,10000,0,0.9853636622428894,0.10249066352844238,abc_ra,
+gaussian_linear,7,100000,0,0.9424545168876648,1.1658825874328613,abc_ra,
+gaussian_linear,8,1000,0,0.9867272973060608,0.02748703956604004,abc_ra,
+gaussian_linear,8,10000,0,0.9877272844314575,0.11061573028564453,abc_ra,
+gaussian_linear,8,100000,0,0.9420909285545349,0.5543997287750244,abc_ra,
+gaussian_linear,9,1000,0,0.98781818151474,0.02558422088623047,abc_ra,
+gaussian_linear,9,10000,0,0.9889090657234192,0.06185436248779297,abc_ra,
+gaussian_linear,9,100000,0,0.932272732257843,0.6126542091369629,abc_ra,
+gaussian_linear,10,1000,0,0.9885454773902893,0.020049571990966797,abc_ra,
+gaussian_linear,10,10000,0,0.9874545335769653,0.11631608009338379,abc_ra,
+gaussian_linear,10,100000,0,0.9390909075737,0.6695671081542969,abc_ra,
+gaussian_linear_uniform,1,1000,0,0.993363618850708,0.01913619041442871,abc_ra,
+gaussian_linear_uniform,1,10000,0,0.9909999966621399,0.10650968551635742,abc_ra,
+gaussian_linear_uniform,1,100000,0,0.9522727131843567,0.6724259853363037,abc_ra,
+gaussian_linear_uniform,2,1000,0,0.9952727556228638,0.03299832344055176,abc_ra,
+gaussian_linear_uniform,2,10000,0,0.989545464515686,0.09632277488708496,abc_ra,
+gaussian_linear_uniform,2,100000,0,0.9679090976715088,0.7651917934417725,abc_ra,
+gaussian_linear_uniform,3,1000,0,0.9969090819358826,0.032996416091918945,abc_ra,
+gaussian_linear_uniform,3,10000,0,0.9957273006439209,0.18502354621887207,abc_ra,
+gaussian_linear_uniform,3,100000,0,0.9741818308830261,0.7751379013061523,abc_ra,
+gaussian_linear_uniform,4,1000,0,0.9923636317253113,0.03555154800415039,abc_ra,
+gaussian_linear_uniform,4,10000,0,0.9901818037033081,0.11449265480041504,abc_ra,
+gaussian_linear_uniform,4,100000,0,0.9514545202255249,0.6781620979309082,abc_ra,
+gaussian_linear_uniform,5,1000,0,0.9879999756813049,0.03353428840637207,abc_ra,
+gaussian_linear_uniform,5,10000,0,0.9917272925376892,0.11017441749572754,abc_ra,
+gaussian_linear_uniform,5,100000,0,0.942727267742157,0.7498111724853516,abc_ra,
+gaussian_linear_uniform,6,1000,0,0.9887272715568542,0.035253286361694336,abc_ra,
+gaussian_linear_uniform,6,10000,0,0.9888181686401367,0.10750651359558105,abc_ra,
+gaussian_linear_uniform,6,100000,0,0.9452727437019348,0.738518238067627,abc_ra,
+gaussian_linear_uniform,7,1000,0,0.9873636364936829,0.029216289520263672,abc_ra,
+gaussian_linear_uniform,7,10000,0,0.9885454773902893,0.11164689064025879,abc_ra,
+gaussian_linear_uniform,7,100000,0,0.9431818127632141,0.7023704051971436,abc_ra,
+gaussian_linear_uniform,8,1000,0,0.9913636445999146,0.035346031188964844,abc_ra,
+gaussian_linear_uniform,8,10000,0,0.991636335849762,0.11139750480651855,abc_ra,
+gaussian_linear_uniform,8,100000,0,0.9466363787651062,0.6897907257080078,abc_ra,
+gaussian_linear_uniform,9,1000,0,0.9921818375587463,0.034743547439575195,abc_ra,
+gaussian_linear_uniform,9,10000,0,0.9907272458076477,0.10705399513244629,abc_ra,
+gaussian_linear_uniform,9,100000,0,0.9460909366607666,0.7073018550872803,abc_ra,
+gaussian_linear_uniform,10,1000,0,0.9941818118095398,0.0350949764251709,abc_ra,
+gaussian_linear_uniform,10,10000,0,0.9917272925376892,0.1101691722869873,abc_ra,
+gaussian_linear_uniform,10,100000,0,0.9578182101249695,0.6882774829864502,abc_ra,
+gaussian_mixture,1,1000,0,0.9190000295639038,0.07572460174560547,abc_ra,
+gaussian_mixture,1,10000,0,0.9206363558769226,0.13667941093444824,abc_ra,
+gaussian_mixture,1,100000,0,0.9101818203926086,0.5533742904663086,abc_ra,
+gaussian_mixture,2,1000,0,0.9118182063102722,0.01756739616394043,abc_ra,
+gaussian_mixture,2,10000,0,0.9100000262260437,0.04200005531311035,abc_ra,
+gaussian_mixture,2,100000,0,0.9090909361839294,0.5047504901885986,abc_ra,
+gaussian_mixture,3,1000,0,0.9091818332672119,0.015417337417602539,abc_ra,
+gaussian_mixture,3,10000,0,0.9089999794960022,0.051657915115356445,abc_ra,
+gaussian_mixture,3,100000,0,0.9090909361839294,0.48961520195007324,abc_ra,
+gaussian_mixture,4,1000,0,0.9088181853294373,0.013222932815551758,abc_ra,
+gaussian_mixture,4,10000,0,0.9093636274337769,0.04334712028503418,abc_ra,
+gaussian_mixture,4,100000,0,0.9090909361839294,0.49591708183288574,abc_ra,
+gaussian_mixture,5,1000,0,0.9138181805610657,0.015999317169189453,abc_ra,
+gaussian_mixture,5,10000,0,0.9099090695381165,0.0421142578125,abc_ra,
+gaussian_mixture,5,100000,0,0.9092727303504944,0.4860994815826416,abc_ra,
+gaussian_mixture,6,1000,0,0.9093636274337769,0.016013383865356445,abc_ra,
+gaussian_mixture,6,10000,0,0.9097272753715515,0.043358564376831055,abc_ra,
+gaussian_mixture,6,100000,0,0.9090909361839294,0.5013782978057861,abc_ra,
+gaussian_mixture,7,1000,0,0.9091818332672119,0.010695934295654297,abc_ra,
+gaussian_mixture,7,10000,0,0.9088181853294373,0.04310488700866699,abc_ra,
+gaussian_mixture,7,100000,0,0.9090909361839294,0.4986917972564697,abc_ra,
+gaussian_mixture,8,1000,0,0.9090909361839294,0.011506795883178711,abc_ra,
+gaussian_mixture,8,10000,0,0.9089999794960022,0.043889760971069336,abc_ra,
+gaussian_mixture,8,100000,0,0.9090909361839294,0.49961256980895996,abc_ra,
+gaussian_mixture,9,1000,0,0.9090909361839294,0.016211271286010742,abc_ra,
+gaussian_mixture,9,10000,0,0.9101818203926086,0.04238009452819824,abc_ra,
+gaussian_mixture,9,100000,0,0.9090909361839294,0.4752047061920166,abc_ra,
+gaussian_mixture,10,1000,0,0.9197272658348083,0.01603841781616211,abc_ra,
+gaussian_mixture,10,10000,0,0.9105454683303833,0.1161203384399414,abc_ra,
+gaussian_mixture,10,100000,0,0.9101818203926086,0.491046667098999,abc_ra,
+slcp,1,1000,0,0.9962727427482605,0.03601861000061035,abc_ra,
+slcp,1,10000,0,0.989727258682251,0.051973819732666016,abc_ra,
+slcp,1,100000,0,0.9771817922592163,0.7821807861328125,abc_ra,
+slcp,2,1000,0,0.9989091157913208,0.028997421264648438,abc_ra,
+slcp,2,10000,0,0.9984545707702637,0.05920267105102539,abc_ra,
+slcp,2,100000,0,0.9796363711357117,0.8508169651031494,abc_ra,
+slcp,3,1000,0,0.9996363520622253,0.03439140319824219,abc_ra,
+slcp,3,10000,0,0.9986363649368286,0.06772041320800781,abc_ra,
+slcp,3,100000,0,0.9769999980926514,0.8009524345397949,abc_ra,
+slcp,4,1000,0,0.9950000047683716,0.03956747055053711,abc_ra,
+slcp,4,10000,0,0.995090901851654,0.11851048469543457,abc_ra,
+slcp,4,100000,0,0.9874545335769653,0.6778995990753174,abc_ra,
+slcp,5,1000,0,0.9986363649368286,0.036997318267822266,abc_ra,
+slcp,5,10000,0,0.9965454339981079,0.05200028419494629,abc_ra,
+slcp,5,100000,0,0.9731818437576294,0.6484370231628418,abc_ra,
+slcp,6,1000,0,0.996999979019165,0.023272991180419922,abc_ra,
+slcp,6,10000,0,0.9956363439559937,0.1260383129119873,abc_ra,
+slcp,6,100000,0,0.9738181829452515,0.7941827774047852,abc_ra,
+slcp,7,1000,0,0.9981818199157715,0.031163930892944336,abc_ra,
+slcp,7,10000,0,0.9947272539138794,0.11351132392883301,abc_ra,
+slcp,7,100000,0,0.9810909032821655,0.7064700126647949,abc_ra,
+slcp,8,1000,0,0.998272716999054,0.020883560180664062,abc_ra,
+slcp,8,10000,0,0.9954545497894287,0.19633793830871582,abc_ra,
+slcp,8,100000,0,0.9853636622428894,0.7900395393371582,abc_ra,
+slcp,9,1000,0,0.9968181848526001,0.02838921546936035,abc_ra,
+slcp,9,10000,0,0.9978181719779968,0.1180565357208252,abc_ra,
+slcp,9,100000,0,0.982272744178772,0.7870192527770996,abc_ra,
+slcp,10,1000,0,0.9938181638717651,0.02634143829345703,abc_ra,
+slcp,10,10000,0,0.9940000176429749,0.12401103973388672,abc_ra,
+slcp,10,100000,0,0.9831818342208862,0.7949063777923584,abc_ra,
+two_moons,1,1000,0,0.9677272439002991,0.025743961334228516,abc_ra,
+two_moons,1,10000,0,0.9708181619644165,0.03925800323486328,abc_ra,
+two_moons,1,100000,0,0.9090909361839294,0.5130903720855713,abc_ra,
+two_moons,2,1000,0,0.9622727036476135,0.0072214603424072266,abc_ra,
+two_moons,2,10000,0,0.9309090971946716,0.043517351150512695,abc_ra,
+two_moons,2,100000,0,0.9090909361839294,0.48047709465026855,abc_ra,
+two_moons,3,1000,0,0.975454568862915,0.012345314025878906,abc_ra,
+two_moons,3,10000,0,0.9321818351745605,0.04089784622192383,abc_ra,
+two_moons,3,100000,0,0.9219090938568115,0.5057299137115479,abc_ra,
+two_moons,4,1000,0,0.9694545269012451,0.01647496223449707,abc_ra,
+two_moons,4,10000,0,0.9331818222999573,0.03815937042236328,abc_ra,
+two_moons,4,100000,0,0.9090909361839294,0.5293192863464355,abc_ra,
+two_moons,5,1000,0,0.976272702217102,0.007954835891723633,abc_ra,
+two_moons,5,10000,0,0.9624545574188232,0.03982400894165039,abc_ra,
+two_moons,5,100000,0,0.9480000138282776,0.4876387119293213,abc_ra,
+two_moons,6,1000,0,0.9724545478820801,0.01589822769165039,abc_ra,
+two_moons,6,10000,0,0.9643636345863342,0.11205530166625977,abc_ra,
+two_moons,6,100000,0,0.9118182063102722,0.47759032249450684,abc_ra,
+two_moons,7,1000,0,0.9719091057777405,0.013991117477416992,abc_ra,
+two_moons,7,10000,0,0.9294545650482178,0.0423736572265625,abc_ra,
+two_moons,7,100000,0,0.9187272787094116,0.48109912872314453,abc_ra,
+two_moons,8,1000,0,0.9720908999443054,0.014247894287109375,abc_ra,
+two_moons,8,10000,0,0.9361818432807922,0.039465904235839844,abc_ra,
+two_moons,8,100000,0,0.9201818108558655,0.476550817489624,abc_ra,
+two_moons,9,1000,0,0.970727264881134,0.015423297882080078,abc_ra,
+two_moons,9,10000,0,0.9466363787651062,0.036980390548706055,abc_ra,
+two_moons,9,100000,0,0.921999990940094,0.47094202041625977,abc_ra,
+two_moons,10,1000,0,0.9778181910514832,0.014006853103637695,abc_ra,
+two_moons,10,10000,0,0.9524545669555664,0.0399928092956543,abc_ra,
+two_moons,10,100000,0,0.9374545216560364,0.48594021797180176,abc_ra,
+slcp_distractors,1,1000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,1,10000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,1,100000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,2,1000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,2,10000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,2,100000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,3,1000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,3,10000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,3,100000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,4,1000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,4,10000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,4,100000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,5,1000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,5,10000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,5,100000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,6,1000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,6,10000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,6,100000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,7,1000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,7,10000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,7,100000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,8,1000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,8,10000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,8,100000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,9,1000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,9,10000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,9,100000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,10,1000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,10,10000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+slcp_distractors,10,100000,0,,,abc_ra,"Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL pyro.distributions.torch.MixtureSameFamily was not an allowed global by default. Please use `torch.serialization.add_safe_globals([pyro.distributions.torch.MixtureSameFamily])` or the `torch.serialization.safe_globals([pyro.distributions.torch.MixtureSameFamily])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html."
+bernoulli_glm_raw,1,1000,0,0.9964545369148254,0.5099897384643555,abc_ra,
+bernoulli_glm_raw,1,10000,0,0.9978181719779968,2.3632378578186035,abc_ra,
+bernoulli_glm_raw,1,100000,0,0.9430000185966492,20.8988037109375,abc_ra,
+bernoulli_glm_raw,2,1000,0,0.9984545707702637,0.5277056694030762,abc_ra,
+bernoulli_glm_raw,2,10000,0,0.9973636269569397,2.3136446475982666,abc_ra,
+bernoulli_glm_raw,2,100000,0,0.9693636298179626,19.232987880706787,abc_ra,
+bernoulli_glm_raw,3,1000,0,0.9971818327903748,0.5045936107635498,abc_ra,
+bernoulli_glm_raw,3,10000,0,0.9954545497894287,2.229609489440918,abc_ra,
+bernoulli_glm_raw,3,100000,0,0.9338181614875793,21.866432428359985,abc_ra,
+bernoulli_glm_raw,4,1000,0,0.9949091076850891,0.6028726100921631,abc_ra,
+bernoulli_glm_raw,4,10000,0,0.9946363568305969,2.368666648864746,abc_ra,
+bernoulli_glm_raw,4,100000,0,0.9476363658905029,20.68878674507141,abc_ra,
+bernoulli_glm_raw,5,1000,0,0.9998182058334351,0.4925196170806885,abc_ra,
+bernoulli_glm_raw,5,10000,0,1.0,2.2611377239227295,abc_ra,
+bernoulli_glm_raw,5,100000,0,0.9954545497894287,20.894724369049072,abc_ra,
+bernoulli_glm_raw,6,1000,0,0.9970909357070923,0.4656689167022705,abc_ra,
+bernoulli_glm_raw,6,10000,0,1.0,2.600912570953369,abc_ra,
+bernoulli_glm_raw,6,100000,0,0.9850909113883972,21.10980749130249,abc_ra,
+bernoulli_glm_raw,7,1000,0,0.9995454549789429,0.5363883972167969,abc_ra,
+bernoulli_glm_raw,7,10000,0,1.0,2.2950429916381836,abc_ra,
+bernoulli_glm_raw,7,100000,0,0.9869090914726257,21.12853193283081,abc_ra,
+bernoulli_glm_raw,8,1000,0,0.9949091076850891,0.48798561096191406,abc_ra,
+bernoulli_glm_raw,8,10000,0,0.9987272620201111,2.4430603981018066,abc_ra,
+bernoulli_glm_raw,8,100000,0,0.9452727437019348,21.39626145362854,abc_ra,
+bernoulli_glm_raw,9,1000,0,0.9934545159339905,0.4971339702606201,abc_ra,
+bernoulli_glm_raw,9,10000,0,0.995090901851654,2.252777338027954,abc_ra,
+bernoulli_glm_raw,9,100000,0,0.9346363544464111,21.878414630889893,abc_ra,
+bernoulli_glm_raw,10,1000,0,0.9998182058334351,0.5185472965240479,abc_ra,
+bernoulli_glm_raw,10,10000,0,0.9999091029167175,2.349905490875244,abc_ra,
+bernoulli_glm_raw,10,100000,0,0.9746363759040833,21.233205795288086,abc_ra,

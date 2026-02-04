@@ -1,0 +1,3 @@
+budget,c2st_score,posterior_shape
+1000,0.9784545302391052,"torch.Size([1000, 2])"
+10000,0.9551818370819092,"torch.Size([1000, 2])"

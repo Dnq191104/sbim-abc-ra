@@ -1,0 +1,77 @@
+\documentclass[11pt]{article}
+\usepackage{amsmath, amssymb}
+\usepackage[margin=1in]{geometry}
+
+\title{Rejection ABC with Linear Regression Adjustment}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\paragraph{Rejection ABC (top-$k$).}
+Given an observation $x_{\mathrm{obs}}$, draw $\theta_i \sim p(\theta)$ and simulate
+$x_i \sim p(x \mid \theta_i)$ for $i=1,\dots,N$.
+Let $\phi(\cdot)$ denote the summary/feature map used for comparison (in our implementation:
+flattening of simulator output, optionally followed by standardization).
+Define distances
+\[
+d_i \;=\; \left\lVert \phi(x_i) - \phi(x_{\mathrm{obs}}) \right\rVert_2,
+\]
+and retain the $k$ accepted pairs $\{(\theta_i,x_i)\}_{i\in\mathcal{A}}$ corresponding to the
+smallest $d_i$ (top-$k$ acceptance).
+
+\paragraph{Kernel weights (Epanechnikov).}
+Let $\varepsilon = \max_{i\in\mathcal{A}} d_i$ and define weights
+\[
+w_i \;=\; \max\!\left(0,\; 1 - (d_i/\varepsilon)^2\right),
+\qquad i\in\mathcal{A}.
+\]
+
+\paragraph{Feature vectors and (optional) standardization.}
+Let $Z_i = \phi(x_i)\in\mathbb{R}^p$ and $Z_{\mathrm{obs}}=\phi(x_{\mathrm{obs}})\in\mathbb{R}^p$.
+Optionally, we standardize using the accepted set (and apply the same transform to $Z_{\mathrm{obs}}$):
+\[
+X_i = \frac{Z_i-\mu}{\sigma}, \qquad
+X_{\mathrm{obs}} = \frac{Z_{\mathrm{obs}}-\mu}{\sigma},
+\]
+where $(\mu,\sigma)$ are computed from $\{Z_i\}_{i\in\mathcal{A}}$ (optionally using weights $w_i$).
+
+\paragraph{(Optional) parameter transform.}
+For constrained parameters we may apply a bijective transform $t$ (e.g.\ log / logit):
+\[
+\tilde\theta_i = t(\theta_i),
+\]
+and map back after adjustment via $t^{-1}$.
+
+\paragraph{Local linear regression (LRA).}
+Define centered predictors
+\[
+\Delta X_i \;=\; X_i - X_{\mathrm{obs}}, \qquad i\in\mathcal{A}.
+\]
+For each parameter component $j=1,\dots,d_\theta$, fit a weighted linear model with intercept:
+\[
+\tilde\theta_{i,j} \approx \alpha_j + \beta_j^\top \Delta X_i,
+\quad\text{by minimizing}\quad
+\sum_{i\in\mathcal{A}} w_i\left(\tilde\theta_{i,j}-\alpha_j-\beta_j^\top \Delta X_i\right)^2.
+\]
+(Equivalently, one may fit a single multi-output linear regression for all components at once.)
+
+\paragraph{Regression adjustment step.}
+Let $\widehat{B}$ collect the fitted coefficients (stacked across $j$). Then each accepted draw is adjusted as
+\[
+\tilde\theta_i^{\mathrm{adj}}
+\;=\;
+\tilde\theta_i - \widehat{B}\,\Delta X_i
+\;=\;
+\tilde\theta_i - \widehat{B}\,(X_i - X_{\mathrm{obs}}),
+\qquad i\in\mathcal{A}.
+\]
+This is equivalent to the common ``predicted shift'' form
+$\tilde\theta_{i,j}^{\mathrm{adj}}=\tilde\theta_{i,j} + \widehat f_j(X_{\mathrm{obs}})-\widehat f_j(X_i)$.
+
+\paragraph{Return adjusted draws and resample.}
+Finally, map back if needed: $\theta_i^{\mathrm{adj}} = t^{-1}(\tilde\theta_i^{\mathrm{adj}})$.
+We approximate the posterior by KDE-resampling from $\{\theta_i^{\mathrm{adj}}\}_{i\in\mathcal{A}}$,
+choosing the KDE bandwidth by cross-validation over a positive bandwidth grid.
+\end{document}
