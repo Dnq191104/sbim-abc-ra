@@ -1,0 +1,26 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Outputs / artifacts
+results/
+logs/
+checkpoints/
+
+# Local data / caches
+data/
+cache/
+
+# Generated files
+*.log
+*.pdf
+*.png
+*.csv
+*.json
+
+# OS / editor
+.DS_Store
+Thumbs.db
+
