@@ -1,24 +1,25 @@
-# --- PyTorch 2.6+ checkpoint compatibility (sbibm/pyro objects in .pt files) ---
+# --- PyTorch 2.6+ compatibility for sbibm reference posterior checkpoints ---
 import torch
 
-# 1) allowlist pyro MixtureSameFamily for safe weights-only unpickling
+_torch_load_orig = torch.load
+
+
+def _torch_load_compat(*args, **kwargs):
+    # sbibm checkpoints are trusted (from installed package / known source)
+    kwargs.setdefault("weights_only", False)
+    return _torch_load_orig(*args, **kwargs)
+
+
+torch.load = _torch_load_compat
+
+# Allowlist Pyro MixtureSameFamily for safe unpickling when weights_only=True is used.
 try:
     from pyro.distributions.torch import MixtureSameFamily
     if hasattr(torch, "serialization") and hasattr(torch.serialization, "add_safe_globals"):
         torch.serialization.add_safe_globals([MixtureSameFamily])
 except Exception:
     pass
-
-# 2) fallback: force old behaviour if something still calls torch.load() without args
-_old_torch_load = torch.load
-
-
-def _torch_load(*args, **kwargs):
-    kwargs.setdefault("weights_only", False)   # trusted checkpoints only
-    return _old_torch_load(*args, **kwargs)
-
-
-torch.load = _torch_load
+# --------------------------------------------------------------------------
 
 import argparse
 import json
@@ -26,6 +27,7 @@ import os
 import time
 import hashlib
 import random
+from pathlib import Path
 import numpy as np
 
 from sbibm.tasks import get_task
@@ -127,6 +129,16 @@ def run_method(task, method: str, obs_id: int, budget: int, num_post: int, seed:
     raise ValueError(f"Unknown method: {method}")
 
 
+def should_skip(output_path: Path) -> bool:
+    if not output_path.exists():
+        return False
+    try:
+        prev = json.loads(output_path.read_text(encoding="utf-8"))
+        return prev.get("status") == "ok"
+    except Exception:
+        return False
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--task", required=True)
@@ -171,18 +183,15 @@ def main():
             output_root = default_output_root()
         output_path = default_output_path(task_name, method, budget, obs_id, seed, output_root)
 
-    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    output_path = Path(output_path)
+    output_path.parent.mkdir(parents=True, exist_ok=True)
 
     # Skip if already done
-    if os.path.exists(output_path):
-        try:
-            with open(output_path, "r", encoding="utf-8") as f:
-                prev = json.load(f)
-            if prev.get("status") == "ok":
-                print(f"Skipping existing result: {output_path}")
-                return
-        except Exception:
-            pass
+    if should_skip(output_path):
+        print(f"Skipping existing result: {output_path}")
+        return
+    if output_path.exists():
+        print(f"Re-running because existing result is not ok: {output_path}")
 
     result = {
         "task": task_name,
@@ -217,7 +226,7 @@ def main():
     except Exception as e:
         result["error"] = str(e)
 
-    with open(output_path, "w", encoding="utf-8") as f:
+    with output_path.open("w", encoding="utf-8") as f:
         json.dump(result, f, indent=2)
 
     print(f"Wrote: {output_path}")
