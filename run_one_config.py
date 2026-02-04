@@ -107,6 +107,16 @@ def run_method(task, method: str, obs_id: int, budget: int, num_post: int, seed:
 
 
 def main():
+    # Allow safe deserialization of MixtureSameFamily used in reference posteriors.
+    try:
+        import pyro.distributions.torch  # noqa: F401
+        from torch.serialization import add_safe_globals
+        from torch.distributions import MixtureSameFamily
+
+        add_safe_globals({"MixtureSameFamily": MixtureSameFamily})
+    except Exception:
+        pass
+
     parser = argparse.ArgumentParser()
     parser.add_argument("--task", required=True)
     parser.add_argument("--method", required=True, choices=sorted(METHODS))
