@@ -35,9 +35,18 @@ def set_seeds(seed: int) -> None:
     torch.manual_seed(seed)
 
 
-def default_output_path(task: str, method: str, budget: int, obs_id: int, seed: int) -> str:
+def default_output_root() -> str:
+    scratch_root = "/scratch/dangn5_sbibm_bench/results"
+    if os.path.exists(scratch_root):
+        return scratch_root
+    return "results"
+
+
+def default_output_path(
+    task: str, method: str, budget: int, obs_id: int, seed: int, output_root: str
+) -> str:
     return os.path.join(
-        "results",
+        output_root,
         task,
         method,
         f"budget={budget}",
@@ -106,6 +115,7 @@ def main():
     parser.add_argument("--base-seed", type=int, default=0)
     parser.add_argument("--seed", type=int, default=None)
     parser.add_argument("--output", type=str, default=None)
+    parser.add_argument("--output-root", type=str, default=None)
     parser.add_argument("--num-post", type=int, default=10_000)
     parser.add_argument("--config", type=str, default=None)
     parser.add_argument("--index", type=int, default=None)
@@ -124,6 +134,7 @@ def main():
         if seed == 0:
             seed = derive_seed(task_name, method, budget, obs_id, base_seed)
         output_path = cfg.get("output_path")
+        output_root = cfg.get("output_root", args.output_root)
     else:
         task_name = args.task
         method = args.method
@@ -132,9 +143,12 @@ def main():
         base_seed = args.base_seed
         seed = args.seed if args.seed is not None else derive_seed(task_name, method, budget, obs_id, base_seed)
         output_path = args.output
+        output_root = args.output_root
 
     if output_path is None:
-        output_path = default_output_path(task_name, method, budget, obs_id, seed)
+        if output_root is None:
+            output_root = default_output_root()
+        output_path = default_output_path(task_name, method, budget, obs_id, seed, output_root)
 
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
