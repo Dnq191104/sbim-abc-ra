@@ -1,16 +1,24 @@
-# --- PyTorch 2.6+ compatibility for sbibm reference posterior checkpoints ---
+# --- PyTorch 2.6 compat: sbibm/slcp_distractors Pyro checkpoints ---
+import inspect
 import torch
 
-_torch_load_orig = torch.load
+_sig = None
+try:
+    _sig = inspect.signature(torch.load)
+except Exception:
+    _sig = None
 
+_HAS_WEIGHTS_ONLY = _sig is not None and ("weights_only" in _sig.parameters)
 
-def _torch_load_compat(*args, **kwargs):
-    # sbibm checkpoints are trusted (from installed package / known source)
-    kwargs.setdefault("weights_only", False)
-    return _torch_load_orig(*args, **kwargs)
+if _HAS_WEIGHTS_ONLY:
+    _torch_load_orig = torch.load
 
+    def torch_load_compat(*args, **kwargs):
+        # restore pre-2.6 default behavior
+        kwargs.setdefault("weights_only", False)
+        return _torch_load_orig(*args, **kwargs)
 
-torch.load = _torch_load_compat
+    torch.load = torch_load_compat
 
 # Allowlist Pyro MixtureSameFamily for safe unpickling when weights_only=True is used.
 try:
