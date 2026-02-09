@@ -207,6 +207,9 @@ def main():
         "budget": budget,
         "obs_id": obs_id,
         "seed": seed,
+        "num_post_requested": None,
+        "num_post_returned": None,
+        "theta_dim": None,
         "c2st": None,
         "runtime_sec": None,
         "status": "error",
@@ -222,6 +225,9 @@ def main():
         samples = run_method(task, method, obs_id, budget, args.num_post, seed)
         runtime = time.perf_counter() - t0
 
+        result["num_post_requested"] = int(args.num_post)
+        result["num_post_returned"] = int(samples.shape[0])
+        result["theta_dim"] = int(samples.shape[1])
         score = float(c2st(ref, samples, seed=0))
         result.update(
             {
