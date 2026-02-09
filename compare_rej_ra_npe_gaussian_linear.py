@@ -65,12 +65,20 @@ def simulate_and_accept_topk(task, obs_id: int, num_simulations: int, num_top: i
     return theta_acc, x_acc, x_obs_np, d_acc
 
 
+def _num_top_for_budget(budget: int) -> int:
+    if budget >= 100_000:
+        return 2000
+    if budget >= 10_000:
+        return 1000
+    return 500
+
+
 def run_rej_abc_and_ra(task, obs_id: int, budget: int, num_samples_out: int, seed: int):
     theta_acc, x_acc, x_obs_np, d_acc = simulate_and_accept_topk(
         task=task,
         obs_id=obs_id,
         num_simulations=budget,
-        num_top=100,
+        num_top=_num_top_for_budget(budget),
         batch_size=2048,
         seed=seed,
     )

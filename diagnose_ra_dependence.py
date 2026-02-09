@@ -7,15 +7,15 @@ import numpy as np
 import torch
 
 from sbibm.tasks import get_task
-from sbibm.algorithms import snpe as npe
 from sbibm.algorithms.sbi.mcabc import run as rej_abc_original
 from sbibm.algorithms.sbi.smcabc import run as smc_abc_original
 
 from compare_rej_ra_npe_gaussian_linear import run_rej_abc_and_ra
 from run_smc_ra_gaussian_linear import run_smc_abc_ra_same_logic
+from ra_core import resample_with_replacement
 
 
-METHODS = ["rej", "rej_ra", "smc", "smc_ra", "npe", "ref"]
+METHODS = ["rej", "rej_ra", "smc", "smc_ra", "ref"]
 
 
 def corr_mat(samples: torch.Tensor) -> np.ndarray:
@@ -30,14 +30,6 @@ def corr_mat(samples: torch.Tensor) -> np.ndarray:
 def get_samples(task, method: str, obs_id: int, budget: int, num_post: int, seed: int) -> torch.Tensor:
     if method == "ref":
         return task.get_reference_posterior_samples(num_observation=obs_id)
-    if method == "npe":
-        samples, _, _ = npe(
-            task=task,
-            num_observation=obs_id,
-            num_simulations=budget,
-            num_samples=num_post,
-        )
-        return samples
     if method == "rej":
         samples, _, _ = rej_abc_original(
             task=task,
@@ -62,7 +54,8 @@ def get_samples(task, method: str, obs_id: int, budget: int, num_post: int, seed
             num_samples_out=num_post,
             seed=seed,
         )
-        return ra
+        ra_np = resample_with_replacement(ra.detach().cpu().numpy(), num_post, seed=seed)
+        return torch.as_tensor(ra_np, dtype=ra.dtype)
     if method == "smc_ra":
         ra = run_smc_abc_ra_same_logic(
             task=task,
@@ -71,7 +64,8 @@ def get_samples(task, method: str, obs_id: int, budget: int, num_post: int, seed
             num_samples_out=num_post,
             seed=seed,
         )
-        return ra
+        ra_np = resample_with_replacement(ra.detach().cpu().numpy(), num_post, seed=seed)
+        return torch.as_tensor(ra_np, dtype=ra.dtype)
     raise ValueError(f"Unknown method: {method}")
 
 

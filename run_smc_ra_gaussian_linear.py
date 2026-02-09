@@ -14,7 +14,11 @@ TASK_NAME = "gaussian_linear"
 OBS_ID = 1
 BUDGET = 1000
 NUM_POST_SAMPLES = 10_000
-NUM_TOP = 100
+BUDGET_TOPK_RULES = [
+    (100_000, 2000),
+    (10_000, 1000),
+    (0, 500),
+]
 BATCH_SIZE = 2048
 NUM_ROUNDS = 3
 USE_PCA = True
@@ -38,6 +42,7 @@ def run_smc_abc_ra_same_logic(task, obs_id: int, budget: int, num_samples_out: i
     x_obs = task.get_observation(num_observation=obs_id)
 
     sims_per_round = budget // NUM_ROUNDS
+    num_top = next(k for b, k in BUDGET_TOPK_RULES if budget >= b)
 
     theta_acc = None
     x_acc = None
@@ -51,7 +56,7 @@ def run_smc_abc_ra_same_logic(task, obs_id: int, budget: int, num_samples_out: i
         x_obs_flat = x_obs.reshape(-1)
 
         d = torch.norm(x_flat - x_obs_flat[None, :], dim=1)
-        k = min(int(NUM_TOP), int(sims_per_round))
+        k = min(int(num_top), int(sims_per_round))
         idx = torch.topk(d, k=k, largest=False).indices
 
         # Keep only the final round for RA
