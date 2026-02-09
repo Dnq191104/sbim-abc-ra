@@ -7,7 +7,6 @@ from sbibm.algorithms import snpe as npe
 from ra_core import (
     kde_sample_cv,
     linear_reg_adjust,
-    resample_with_replacement,
 )
 
 
@@ -86,10 +85,9 @@ def run_rej_abc_and_ra(task, obs_id: int, budget: int, num_samples_out: int, see
     rej_np, _ = kde_sample_cv(theta_acc, num_samples_out, seed=seed)
 
     theta_adj = _linear_reg_adjust(theta_acc, x_acc, x_obs_np, d_acc)
-    ra_np = resample_with_replacement(theta_adj, num_samples_out, seed=seed)
 
     rej = torch.as_tensor(rej_np, dtype=torch.float32)
-    ra = torch.as_tensor(ra_np, dtype=torch.float32)
+    ra = torch.as_tensor(theta_adj, dtype=torch.float32)
     return rej, ra
 
 

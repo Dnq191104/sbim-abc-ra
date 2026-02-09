@@ -6,7 +6,6 @@ from sbibm.metrics.c2st import c2st
 from ra_core import (
     distance_weights,
     linear_reg_adjust,
-    resample_with_replacement,
 )
 
 
@@ -82,8 +81,7 @@ def run_smc_abc_ra_same_logic(task, obs_id: int, budget: int, num_samples_out: i
         standardize_x=True,
         pca_dim=PCA_DIM if USE_PCA else None,
     )
-    ra_np = resample_with_replacement(theta_adj, num_samples_out, seed=seed)
-    ra = torch.as_tensor(ra_np, dtype=torch.float32)
+    ra = torch.as_tensor(theta_adj, dtype=torch.float32)
     return ra
 
 

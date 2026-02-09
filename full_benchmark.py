@@ -235,7 +235,7 @@ def run_rej_abc_and_ra(task, obs_id: int, budget: int, num_samples_out: int, see
         use_distance_weights=USE_DISTANCE_WEIGHTS,
         standardize_x=STANDARDIZE_X_FOR_RA,
     )
-    ra_np = resample_with_replacement(theta_adj, num_samples_out, seed=seed)
+    ra_np = theta_adj
     ra_bw = None
     t_ra = time.perf_counter() - t1
 

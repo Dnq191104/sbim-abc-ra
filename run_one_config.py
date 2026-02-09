@@ -40,6 +40,7 @@ import numpy as np
 
 from sbibm.tasks import get_task
 from sbibm.metrics.c2st import c2st
+from metrics_marginal import mean_mmd_over_dims
 
 # sbibm wrappers
 from sbibm.algorithms import snpe as npe
@@ -210,6 +211,12 @@ def main():
         "num_post_requested": None,
         "num_post_returned": None,
         "theta_dim": None,
+        "metric": None,
+        "mmd_mean": None,
+        "mmd_median": None,
+        "mmd_per_dim": None,
+        "num_method": None,
+        "num_ref_used": None,
         "c2st": None,
         "runtime_sec": None,
         "status": "error",
@@ -228,6 +235,26 @@ def main():
         result["num_post_requested"] = int(args.num_post)
         result["num_post_returned"] = int(samples.shape[0])
         result["theta_dim"] = int(samples.shape[1])
+
+        output_dir = output_path.parent
+        np.save(output_dir / "theta.npy", samples.detach().cpu().numpy().astype(np.float32))
+        np.save(output_dir / "theta_ref.npy", ref.detach().cpu().numpy().astype(np.float32))
+        theta_np = samples.detach().cpu().numpy()
+        ref_np = ref.detach().cpu().numpy()
+        n = theta_np.shape[0]
+        rng = np.random.default_rng(seed)
+        if ref_np.shape[0] > n:
+            idx = rng.choice(ref_np.shape[0], size=n, replace=False)
+            ref_cmp = ref_np[idx]
+        else:
+            ref_cmp = ref_np
+
+        mmd_stats = mean_mmd_over_dims(theta_np, ref_cmp)
+        result.update(mmd_stats)
+        result["metric"] = "mmd_1d_rbf"
+        result["num_method"] = int(n)
+        result["num_ref_used"] = int(ref_cmp.shape[0])
+
         score = float(c2st(ref, samples, seed=0))
         result.update(
             {
