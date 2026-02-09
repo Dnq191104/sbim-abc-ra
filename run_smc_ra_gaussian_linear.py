@@ -13,18 +13,24 @@ TASK_NAME = "gaussian_linear"
 OBS_ID = 1
 BUDGET = 1000
 NUM_POST_SAMPLES = 10_000
-BUDGET_TOPK_RULES = [
-    (100_000, 2000),
-    (10_000, 1000),
-    (0, 500),
-]
 BATCH_SIZE = 2048
 NUM_ROUNDS = 3
-USE_PCA = True
-PCA_DIM = 50
+DEFAULT_PCA_DIM = 50
 
 
-def run_smc_abc_ra_same_logic(task, obs_id: int, budget: int, num_samples_out: int, seed: int):
+def run_smc_abc_ra_same_logic(
+    task,
+    obs_id: int,
+    budget: int,
+    num_samples_out: int,
+    seed: int,
+    topk: int = 100,
+    reg_type: str = "ols",
+    alpha: float = 1.0,
+    pca_dim: int | None = DEFAULT_PCA_DIM,
+    pca_cap: bool = False,
+    use_weights: bool = True,
+):
     """
     SMC-ABC + RA using the same RA logic as in compare_rej_ra_npe_gaussian_linear.py.
     - Split budget into rounds
@@ -41,7 +47,6 @@ def run_smc_abc_ra_same_logic(task, obs_id: int, budget: int, num_samples_out: i
     x_obs = task.get_observation(num_observation=obs_id)
 
     sims_per_round = budget // NUM_ROUNDS
-    num_top = next(k for b, k in BUDGET_TOPK_RULES if budget >= b)
 
     theta_acc = None
     x_acc = None
@@ -55,7 +60,7 @@ def run_smc_abc_ra_same_logic(task, obs_id: int, budget: int, num_samples_out: i
         x_obs_flat = x_obs.reshape(-1)
 
         d = torch.norm(x_flat - x_obs_flat[None, :], dim=1)
-        k = min(int(num_top), int(sims_per_round))
+        k = min(int(topk), int(sims_per_round))
         idx = torch.topk(d, k=k, largest=False).indices
 
         # Keep only the final round for RA
@@ -66,10 +71,12 @@ def run_smc_abc_ra_same_logic(task, obs_id: int, budget: int, num_samples_out: i
 
     # Apply the SAME RA logic (distance weights + standardization)
     dw = distance_weights(d_acc.detach().cpu().numpy())
-    if dw is None:
+    if use_weights and (dw is not None):
+        smc_weights = dw / np.maximum(dw.sum(), 1e-12)
+    elif use_weights:
         smc_weights = np.ones(len(theta_acc))
     else:
-        smc_weights = dw / np.maximum(dw.sum(), 1e-12)
+        smc_weights = None
 
     theta_adj = linear_reg_adjust(
         theta_acc=theta_acc.detach().cpu().numpy(),
@@ -79,7 +86,11 @@ def run_smc_abc_ra_same_logic(task, obs_id: int, budget: int, num_samples_out: i
         smc_weights=smc_weights,
         use_distance_weights=False,
         standardize_x=True,
-        pca_dim=PCA_DIM if USE_PCA else None,
+        pca_dim=pca_dim,
+        reg_type=reg_type,
+        alpha=alpha,
+        pca_cap=pca_cap,
+        use_weights=use_weights,
     )
     ra = torch.as_tensor(theta_adj, dtype=torch.float32)
     return ra

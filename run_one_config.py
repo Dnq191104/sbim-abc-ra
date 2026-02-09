@@ -52,7 +52,21 @@ from compare_rej_ra_npe_gaussian_linear import run_rej_abc_and_ra
 from run_smc_ra_gaussian_linear import run_smc_abc_ra_same_logic
 
 
-METHODS = {"npe", "rej", "rej_ra", "smc", "smc_ra"}
+VARIANTS = {
+    "rej_ra_base": dict(reg="ols", topk=100, pca_cap=False),
+    "rej_ra_ridge": dict(reg="ridge", alpha=1.0, topk=100, pca_cap=False),
+    "rej_ra_topk500": dict(reg="ols", topk=500, pca_cap=False),
+    "rej_ra_ridge_topk500": dict(reg="ridge", alpha=1.0, topk=500, pca_cap=False),
+    "rej_ra_ridge_topk500_pcapcap": dict(reg="ridge", alpha=1.0, topk=500, pca_cap=True),
+    "smc_ra_base": dict(reg="ols", topk=100, pca_cap=False),
+    "smc_ra_ridge": dict(reg="ridge", alpha=1.0, topk=100, pca_cap=False),
+    "smc_ra_topk500": dict(reg="ols", topk=500, pca_cap=False),
+    "smc_ra_ridge_topk500": dict(reg="ridge", alpha=1.0, topk=500, pca_cap=False),
+    "smc_ra_ridge_topk500_pcapcap": dict(reg="ridge", alpha=1.0, topk=500, pca_cap=True),
+}
+
+
+METHODS = {"npe", "rej", "rej_ra", "smc", "smc_ra"} | set(VARIANTS.keys())
 
 
 def derive_seed(task: str, method: str, budget: int, obs_id: int, base_seed: int) -> int:
@@ -87,7 +101,50 @@ def default_output_path(
     )
 
 
-def run_method(task, method: str, obs_id: int, budget: int, num_post: int, seed: int):
+def resolve_ra_settings(
+    method: str,
+    ra_topk: int | None,
+    ra_reg: str | None,
+    ra_alpha: float | None,
+    ra_pca_dim: int | None,
+    ra_pca_cap: bool | None,
+    ra_use_weights: bool | None,
+) -> dict:
+    settings = {
+        "topk": 100,
+        "reg": "ols",
+        "alpha": 1.0,
+        "pca_dim": 50,
+        "pca_cap": False,
+        "use_weights": True,
+    }
+    if method in VARIANTS:
+        settings.update(VARIANTS[method])
+
+    if ra_topk is not None:
+        settings["topk"] = ra_topk
+    if ra_reg is not None:
+        settings["reg"] = ra_reg
+    if ra_alpha is not None:
+        settings["alpha"] = ra_alpha
+    if ra_pca_dim is not None:
+        settings["pca_dim"] = ra_pca_dim
+    if ra_pca_cap is not None:
+        settings["pca_cap"] = ra_pca_cap
+    if ra_use_weights is not None:
+        settings["use_weights"] = ra_use_weights
+    return settings
+
+
+def run_method(
+    task,
+    method: str,
+    obs_id: int,
+    budget: int,
+    num_post: int,
+    seed: int,
+    ra_settings: dict | None,
+):
     if method == "npe":
         samples, _, _ = npe(
             task=task,
@@ -106,13 +163,20 @@ def run_method(task, method: str, obs_id: int, budget: int, num_post: int, seed:
         )
         return samples
 
-    if method == "rej_ra":
+    if method == "rej_ra" or method.startswith("rej_ra_"):
+        settings = ra_settings or {}
         _, ra = run_rej_abc_and_ra(
             task=task,
             obs_id=obs_id,
             budget=budget,
             num_samples_out=num_post,
             seed=seed,
+            topk=settings.get("topk", 100),
+            reg_type=settings.get("reg", "ols"),
+            alpha=settings.get("alpha", 1.0),
+            pca_dim=settings.get("pca_dim", 50),
+            pca_cap=settings.get("pca_cap", False),
+            use_weights=settings.get("use_weights", True),
         )
         return ra
 
@@ -125,13 +189,20 @@ def run_method(task, method: str, obs_id: int, budget: int, num_post: int, seed:
         )
         return samples
 
-    if method == "smc_ra":
+    if method == "smc_ra" or method.startswith("smc_ra_"):
+        settings = ra_settings or {}
         samples = run_smc_abc_ra_same_logic(
             task=task,
             obs_id=obs_id,
             budget=budget,
             num_samples_out=num_post,
             seed=seed,
+            topk=settings.get("topk", 100),
+            reg_type=settings.get("reg", "ols"),
+            alpha=settings.get("alpha", 1.0),
+            pca_dim=settings.get("pca_dim", 50),
+            pca_cap=settings.get("pca_cap", False),
+            use_weights=settings.get("use_weights", True),
         )
         return samples
 
@@ -159,6 +230,16 @@ def main():
     parser.add_argument("--output", type=str, default=None)
     parser.add_argument("--output-root", type=str, default=None)
     parser.add_argument("--num-post", type=int, default=10_000)
+    parser.add_argument("--ra-topk", type=int, default=None)
+    parser.add_argument("--ra-reg", type=str, choices=["ols", "ridge"], default=None)
+    parser.add_argument("--ra-alpha", type=float, default=None)
+    parser.add_argument("--ra-pca-dim", type=int, default=None)
+    pca_group = parser.add_mutually_exclusive_group()
+    pca_group.add_argument("--ra-pca-cap", action="store_true", default=None)
+    pca_group.add_argument("--ra-no-pca-cap", action="store_false", dest="ra_pca_cap", default=None)
+    weight_group = parser.add_mutually_exclusive_group()
+    weight_group.add_argument("--ra-use-weights", action="store_true", default=None)
+    weight_group.add_argument("--ra-no-weights", action="store_false", dest="ra_use_weights", default=None)
     parser.add_argument("--config", type=str, default=None)
     parser.add_argument("--index", type=int, default=None)
     args = parser.parse_args()
@@ -177,6 +258,12 @@ def main():
             seed = derive_seed(task_name, method, budget, obs_id, base_seed)
         output_path = cfg.get("output_path")
         output_root = cfg.get("output_root", args.output_root)
+        ra_topk = cfg.get("ra_topk", args.ra_topk)
+        ra_reg = cfg.get("ra_reg", args.ra_reg)
+        ra_alpha = cfg.get("ra_alpha", args.ra_alpha)
+        ra_pca_dim = cfg.get("ra_pca_dim", args.ra_pca_dim)
+        ra_pca_cap = cfg.get("ra_pca_cap", args.ra_pca_cap)
+        ra_use_weights = cfg.get("ra_use_weights", args.ra_use_weights)
     else:
         task_name = args.task
         method = args.method
@@ -186,6 +273,12 @@ def main():
         seed = args.seed if args.seed is not None else derive_seed(task_name, method, budget, obs_id, base_seed)
         output_path = args.output
         output_root = args.output_root
+        ra_topk = args.ra_topk
+        ra_reg = args.ra_reg
+        ra_alpha = args.ra_alpha
+        ra_pca_dim = args.ra_pca_dim
+        ra_pca_cap = args.ra_pca_cap
+        ra_use_weights = args.ra_use_weights
 
     if output_path is None:
         if output_root is None:
@@ -202,12 +295,23 @@ def main():
     if output_path.exists():
         print(f"Re-running because existing result is not ok: {output_path}")
 
+    ra_settings = resolve_ra_settings(
+        method=method,
+        ra_topk=ra_topk,
+        ra_reg=ra_reg,
+        ra_alpha=ra_alpha,
+        ra_pca_dim=ra_pca_dim,
+        ra_pca_cap=ra_pca_cap,
+        ra_use_weights=ra_use_weights,
+    )
+
     result = {
         "task": task_name,
         "method": method,
         "budget": budget,
         "obs_id": obs_id,
         "seed": seed,
+        "ra_settings": ra_settings if method.startswith("rej_ra") or method.startswith("smc_ra") else None,
         "num_post_requested": None,
         "num_post_returned": None,
         "theta_dim": None,
@@ -229,7 +333,7 @@ def main():
         ref = task.get_reference_posterior_samples(num_observation=obs_id)
 
         t0 = time.perf_counter()
-        samples = run_method(task, method, obs_id, budget, args.num_post, seed)
+        samples = run_method(task, method, obs_id, budget, args.num_post, seed, ra_settings)
         runtime = time.perf_counter() - t0
 
         result["num_post_requested"] = int(args.num_post)

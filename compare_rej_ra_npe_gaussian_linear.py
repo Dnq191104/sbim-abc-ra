@@ -22,12 +22,20 @@ def simulate_in_batches(simulator, theta: torch.Tensor, batch_size: int = 1024) 
     return torch.cat(xs, dim=0)
 
 
-USE_PCA = True
-PCA_DIM = 50
+DEFAULT_PCA_DIM = 50
 
 
-def _linear_reg_adjust(theta_acc, x_acc, x_obs, d_acc):
-    pca_dim = PCA_DIM if USE_PCA else None
+def _linear_reg_adjust(
+    theta_acc,
+    x_acc,
+    x_obs,
+    d_acc,
+    reg_type: str,
+    alpha: float,
+    pca_dim: int | None,
+    pca_cap: bool,
+    use_weights: bool,
+):
     return linear_reg_adjust(
         theta_acc=theta_acc,
         x_acc=x_acc,
@@ -37,6 +45,10 @@ def _linear_reg_adjust(theta_acc, x_acc, x_obs, d_acc):
         use_distance_weights=True,
         standardize_x=True,
         pca_dim=pca_dim,
+        reg_type=reg_type,
+        alpha=alpha,
+        pca_cap=pca_cap,
+        use_weights=use_weights,
     )
 
 
@@ -64,27 +76,41 @@ def simulate_and_accept_topk(task, obs_id: int, num_simulations: int, num_top: i
     return theta_acc, x_acc, x_obs_np, d_acc
 
 
-def _num_top_for_budget(budget: int) -> int:
-    if budget >= 100_000:
-        return 2000
-    if budget >= 10_000:
-        return 1000
-    return 500
-
-
-def run_rej_abc_and_ra(task, obs_id: int, budget: int, num_samples_out: int, seed: int):
+def run_rej_abc_and_ra(
+    task,
+    obs_id: int,
+    budget: int,
+    num_samples_out: int,
+    seed: int,
+    topk: int = 100,
+    reg_type: str = "ols",
+    alpha: float = 1.0,
+    pca_dim: int | None = DEFAULT_PCA_DIM,
+    pca_cap: bool = False,
+    use_weights: bool = True,
+):
     theta_acc, x_acc, x_obs_np, d_acc = simulate_and_accept_topk(
         task=task,
         obs_id=obs_id,
         num_simulations=budget,
-        num_top=_num_top_for_budget(budget),
+        num_top=topk,
         batch_size=2048,
         seed=seed,
     )
 
     rej_np, _ = kde_sample_cv(theta_acc, num_samples_out, seed=seed)
 
-    theta_adj = _linear_reg_adjust(theta_acc, x_acc, x_obs_np, d_acc)
+    theta_adj = _linear_reg_adjust(
+        theta_acc=theta_acc,
+        x_acc=x_acc,
+        x_obs=x_obs_np,
+        d_acc=d_acc,
+        reg_type=reg_type,
+        alpha=alpha,
+        pca_dim=pca_dim,
+        pca_cap=pca_cap,
+        use_weights=use_weights,
+    )
 
     rej = torch.as_tensor(rej_np, dtype=torch.float32)
     ra = torch.as_tensor(theta_adj, dtype=torch.float32)

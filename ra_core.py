@@ -2,7 +2,7 @@ import math
 import numpy as np
 import torch
 from sklearn.decomposition import PCA
-from sklearn.linear_model import LinearRegression
+from sklearn.linear_model import LinearRegression, Ridge
 from sklearn.model_selection import GridSearchCV
 from sklearn.neighbors import KernelDensity
 
@@ -50,17 +50,22 @@ def linear_reg_adjust(
     use_distance_weights: bool,
     standardize_x: bool,
     pca_dim: int | None = None,
+    reg_type: str = "ols",
+    alpha: float = 1.0,
+    pca_cap: bool = False,
+    use_weights: bool = True,
 ) -> np.ndarray:
     # Combine SMC weights and distance weights (multiply then normalize)
     w = None
-    if smc_weights is not None:
-        w = np.asarray(smc_weights, dtype=float)
-        w = np.clip(w, 0.0, None)
+    if use_weights:
+        if smc_weights is not None:
+            w = np.asarray(smc_weights, dtype=float)
+            w = np.clip(w, 0.0, None)
 
-    if use_distance_weights and (d_acc is not None):
-        dw = distance_weights(d_acc)
-        if dw is not None:
-            w = dw if w is None else w * dw
+        if use_distance_weights and (d_acc is not None):
+            dw = distance_weights(d_acc)
+            if dw is not None:
+                w = dw if w is None else w * dw
 
     if standardize_x:
         mu, std = weighted_mean_std(x_acc, w=w)
@@ -71,6 +76,10 @@ def linear_reg_adjust(
         x_obs_s = x_obs
 
     if pca_dim is not None:
+        if pca_cap:
+            k = theta_acc.shape[0]
+            cap = min(50, k // 3, 30)
+            pca_dim = min(int(pca_dim), max(2, int(cap)))
         max_components = min(x_acc_s.shape[0] - 1, x_acc_s.shape[1])
         n_components = min(int(pca_dim), int(max_components))
         if n_components >= 1:
@@ -81,7 +90,10 @@ def linear_reg_adjust(
     X = x_acc_s - x_obs_s[None, :]
     Y = theta_acc
 
-    reg = LinearRegression()
+    if reg_type == "ridge":
+        reg = Ridge(alpha=float(alpha), fit_intercept=True)
+    else:
+        reg = LinearRegression()
     reg.fit(X, Y, sample_weight=w)
     B = reg.coef_.T
     theta_adj = Y - X @ B
