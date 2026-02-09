@@ -4,8 +4,9 @@ from sbibm.tasks import get_task
 from sbibm.metrics.c2st import c2st
 
 from ra_core import (
+    distance_weights,
     linear_reg_adjust,
-    resample_kde_with_bounds,
+    resample_with_replacement,
 )
 
 
@@ -16,6 +17,8 @@ NUM_POST_SAMPLES = 10_000
 NUM_TOP = 100
 BATCH_SIZE = 2048
 NUM_ROUNDS = 3
+USE_PCA = True
+PCA_DIM = 50
 
 
 def run_smc_abc_ra_same_logic(task, obs_id: int, budget: int, num_samples_out: int, seed: int):
@@ -58,18 +61,23 @@ def run_smc_abc_ra_same_logic(task, obs_id: int, budget: int, num_samples_out: i
     x_obs_np = x_obs.reshape(-1).detach().cpu().numpy()
 
     # Apply the SAME RA logic (distance weights + standardization)
+    dw = distance_weights(d_acc.detach().cpu().numpy())
+    if dw is None:
+        smc_weights = np.ones(len(theta_acc))
+    else:
+        smc_weights = dw / np.maximum(dw.sum(), 1e-12)
+
     theta_adj = linear_reg_adjust(
         theta_acc=theta_acc.detach().cpu().numpy(),
         x_acc=x_acc.detach().cpu().numpy(),
         x_obs=x_obs_np,
         d_acc=d_acc.detach().cpu().numpy(),
-        smc_weights=np.ones(len(theta_acc)),
-        use_distance_weights=True,
+        smc_weights=smc_weights,
+        use_distance_weights=False,
         standardize_x=True,
+        pca_dim=PCA_DIM if USE_PCA else None,
     )
-
-    prior_dist = task.get_prior_dist()
-    ra_np, _ = resample_kde_with_bounds(prior_dist, theta_adj, num_samples_out, seed=seed)
+    ra_np = resample_with_replacement(theta_adj, num_samples_out, seed=seed)
     ra = torch.as_tensor(ra_np, dtype=torch.float32)
     return ra
 

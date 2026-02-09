@@ -1,6 +1,7 @@
 import math
 import numpy as np
 import torch
+from sklearn.decomposition import PCA
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import GridSearchCV
 from sklearn.neighbors import KernelDensity
@@ -48,6 +49,7 @@ def linear_reg_adjust(
     smc_weights: np.ndarray | None,
     use_distance_weights: bool,
     standardize_x: bool,
+    pca_dim: int | None = None,
 ) -> np.ndarray:
     # Combine SMC weights and distance weights (multiply then normalize)
     w = None
@@ -67,6 +69,14 @@ def linear_reg_adjust(
     else:
         x_acc_s = x_acc
         x_obs_s = x_obs
+
+    if pca_dim is not None:
+        max_components = min(x_acc_s.shape[0] - 1, x_acc_s.shape[1])
+        n_components = min(int(pca_dim), int(max_components))
+        if n_components >= 1:
+            pca = PCA(n_components=n_components, random_state=0)
+            x_acc_s = pca.fit_transform(x_acc_s)
+            x_obs_s = pca.transform(x_obs_s.reshape(1, -1)).reshape(-1)
 
     X = x_acc_s - x_obs_s[None, :]
     Y = theta_acc
@@ -129,4 +139,14 @@ def resample_kde_with_bounds(prior_dist, theta_adj: np.ndarray, num_samples: int
             remaining -= 0
     out = np.concatenate(collected, axis=0)[:num_samples]
     return out, bw
+
+
+def resample_with_replacement(theta_adj: np.ndarray, num_samples: int, seed: int) -> np.ndarray:
+    if theta_adj.ndim != 2:
+        raise ValueError(f"theta_adj must be 2D, got {theta_adj.shape}")
+    if len(theta_adj) == 0:
+        raise ValueError("theta_adj must contain at least one sample")
+    rng = np.random.RandomState(seed)
+    idx = rng.randint(0, theta_adj.shape[0], size=num_samples)
+    return theta_adj[idx]
 

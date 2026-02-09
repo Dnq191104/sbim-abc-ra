@@ -7,7 +7,7 @@ from sbibm.algorithms import snpe as npe
 from ra_core import (
     kde_sample_cv,
     linear_reg_adjust,
-    resample_kde_with_bounds,
+    resample_with_replacement,
 )
 
 
@@ -23,7 +23,12 @@ def simulate_in_batches(simulator, theta: torch.Tensor, batch_size: int = 1024) 
     return torch.cat(xs, dim=0)
 
 
+USE_PCA = True
+PCA_DIM = 50
+
+
 def _linear_reg_adjust(theta_acc, x_acc, x_obs, d_acc):
+    pca_dim = PCA_DIM if USE_PCA else None
     return linear_reg_adjust(
         theta_acc=theta_acc,
         x_acc=x_acc,
@@ -32,6 +37,7 @@ def _linear_reg_adjust(theta_acc, x_acc, x_obs, d_acc):
         smc_weights=None,
         use_distance_weights=True,
         standardize_x=True,
+        pca_dim=pca_dim,
     )
 
 
@@ -72,8 +78,7 @@ def run_rej_abc_and_ra(task, obs_id: int, budget: int, num_samples_out: int, see
     rej_np, _ = kde_sample_cv(theta_acc, num_samples_out, seed=seed)
 
     theta_adj = _linear_reg_adjust(theta_acc, x_acc, x_obs_np, d_acc)
-    prior_dist = task.get_prior_dist()
-    ra_np, _ = resample_kde_with_bounds(prior_dist, theta_adj, num_samples_out, seed=seed)
+    ra_np = resample_with_replacement(theta_adj, num_samples_out, seed=seed)
 
     rej = torch.as_tensor(rej_np, dtype=torch.float32)
     ra = torch.as_tensor(ra_np, dtype=torch.float32)

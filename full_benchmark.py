@@ -109,6 +109,16 @@ def kde_sample_cv(theta_np: np.ndarray, num_samples: int, seed: int) -> tuple[np
     return samp, best_bw
 
 
+def resample_with_replacement(theta_adj: np.ndarray, num_samples: int, seed: int) -> np.ndarray:
+    if theta_adj.ndim != 2:
+        raise ValueError(f"theta_adj must be 2D, got {theta_adj.shape}")
+    if len(theta_adj) == 0:
+        raise ValueError("theta_adj must contain at least one sample")
+    rng = np.random.RandomState(seed)
+    idx = rng.randint(0, theta_adj.shape[0], size=num_samples)
+    return theta_adj[idx]
+
+
 # ============================================================
 # Regression adjustment (Beaumont-style local linear)
 # ============================================================
@@ -215,7 +225,7 @@ def run_rej_abc_and_ra(task, obs_id: int, budget: int, num_samples_out: int, see
     rej_np, rej_bw = kde_sample_cv(theta_acc, num_samples_out, seed=seed)
     t_rej = time.perf_counter() - t0
 
-    # RA: adjust then KDE
+    # RA: adjust only (no KDE resampling)
     t1 = time.perf_counter()
     theta_adj = linear_reg_adjust(
         theta_acc=theta_acc,
@@ -225,13 +235,14 @@ def run_rej_abc_and_ra(task, obs_id: int, budget: int, num_samples_out: int, see
         use_distance_weights=USE_DISTANCE_WEIGHTS,
         standardize_x=STANDARDIZE_X_FOR_RA,
     )
-    ra_np, ra_bw = kde_sample_cv(theta_adj, num_samples_out, seed=seed)
+    ra_np = resample_with_replacement(theta_adj, num_samples_out, seed=seed)
+    ra_bw = None
     t_ra = time.perf_counter() - t1
 
     meta = {
         **meta_sim,
         "rej_bw": float(rej_bw),
-        "ra_bw": float(ra_bw),
+        "ra_bw": None,
         "rej_overhead_sec": float(t_rej),
         "ra_overhead_sec": float(t_ra),
     }
