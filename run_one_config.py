@@ -66,7 +66,7 @@ VARIANTS = {
 }
 
 
-METHODS = {"npe", "rej", "rej_ra", "smc", "smc_ra"} | set(VARIANTS.keys())
+BASE_METHODS = {"npe", "rej", "rej_ra", "smc", "smc_ra"}
 
 
 def derive_seed(task: str, method: str, budget: int, obs_id: int, base_seed: int) -> int:
@@ -222,7 +222,7 @@ def should_skip(output_path: Path) -> bool:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--task", required=True)
-    parser.add_argument("--method", required=True, choices=sorted(METHODS))
+    parser.add_argument("--method", required=True, type=str)
     parser.add_argument("--budget", required=True, type=int)
     parser.add_argument("--obs-id", required=True, type=int)
     parser.add_argument("--base-seed", type=int, default=0)
@@ -249,13 +249,13 @@ def main():
             line = f.readlines()[args.index].strip()
         cfg = json.loads(line)
         task_name = cfg["task"]
-        method = cfg["method"]
+        method_in = cfg["method"]
         budget = int(cfg["budget"])
         obs_id = int(cfg["obs_id"])
         base_seed = int(cfg.get("base_seed", args.base_seed))
         seed = int(cfg.get("seed", 0))
         if seed == 0:
-            seed = derive_seed(task_name, method, budget, obs_id, base_seed)
+            seed = derive_seed(task_name, method_in, budget, obs_id, base_seed)
         output_path = cfg.get("output_path")
         output_root = cfg.get("output_root", args.output_root)
         ra_topk = cfg.get("ra_topk", args.ra_topk)
@@ -266,11 +266,11 @@ def main():
         ra_use_weights = cfg.get("ra_use_weights", args.ra_use_weights)
     else:
         task_name = args.task
-        method = args.method
+        method_in = args.method
         budget = args.budget
         obs_id = args.obs_id
         base_seed = args.base_seed
-        seed = args.seed if args.seed is not None else derive_seed(task_name, method, budget, obs_id, base_seed)
+        seed = args.seed if args.seed is not None else derive_seed(task_name, method_in, budget, obs_id, base_seed)
         output_path = args.output
         output_root = args.output_root
         ra_topk = args.ra_topk
@@ -283,7 +283,7 @@ def main():
     if output_path is None:
         if output_root is None:
             output_root = default_output_root()
-        output_path = default_output_path(task_name, method, budget, obs_id, seed, output_root)
+        output_path = default_output_path(task_name, method_in, budget, obs_id, seed, output_root)
 
     output_path = Path(output_path)
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -296,7 +296,7 @@ def main():
         print(f"Re-running because existing result is not ok: {output_path}")
 
     ra_settings = resolve_ra_settings(
-        method=method,
+        method=method_in,
         ra_topk=ra_topk,
         ra_reg=ra_reg,
         ra_alpha=ra_alpha,
@@ -304,14 +304,21 @@ def main():
         ra_pca_cap=ra_pca_cap,
         ra_use_weights=ra_use_weights,
     )
+    base_method = "rej_ra" if method_in.startswith("rej_ra_") else (
+        "smc_ra" if method_in.startswith("smc_ra_") else method_in
+    )
+    if base_method not in BASE_METHODS:
+        raise ValueError(
+            f"Unknown method after resolving variant: {base_method} (from {method_in})"
+        )
 
     result = {
         "task": task_name,
-        "method": method,
+        "method": method_in,
         "budget": budget,
         "obs_id": obs_id,
         "seed": seed,
-        "ra_settings": ra_settings if method.startswith("rej_ra") or method.startswith("smc_ra") else None,
+        "ra_settings": ra_settings if base_method.startswith("rej_ra") or base_method.startswith("smc_ra") else None,
         "num_post_requested": None,
         "num_post_returned": None,
         "theta_dim": None,
@@ -333,7 +340,7 @@ def main():
         ref = task.get_reference_posterior_samples(num_observation=obs_id)
 
         t0 = time.perf_counter()
-        samples = run_method(task, method, obs_id, budget, args.num_post, seed, ra_settings)
+        samples = run_method(task, base_method, obs_id, budget, args.num_post, seed, ra_settings)
         runtime = time.perf_counter() - t0
 
         result["num_post_requested"] = int(args.num_post)
