@@ -1,0 +1,21 @@
+Motivation
+Objectives + Quesions
+Explain Benchmark:
+	Explain tasks - Split based on characteristics
+	Set up
+	Metric
+Benchmark results - In the paper
+Explain ABC - why it doesn't have good result
+How do we fix that? 
+Explain how we add RA, set up RA
+Why MMD, not C2ST?
+Results for each task's group - C2ST -> Expected due to the nature of RA for ABC
+Results for each task's group - MMD
+
+Conclude
+Future work? -> Dynamic RA, make C2ST work
+
+
+
+
+
