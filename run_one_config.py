@@ -151,6 +151,7 @@ def run_method(
             num_observation=obs_id,
             num_simulations=budget,
             num_samples=num_post,
+            num_rounds=1,
         )
         return samples
 

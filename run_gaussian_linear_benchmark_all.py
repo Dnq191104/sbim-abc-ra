@@ -41,6 +41,7 @@ def main():
         num_observation=OBS_ID,
         num_simulations=BUDGET,
         num_samples=NUM_POST_SAMPLES,
+        num_rounds=1,
     )
     npe_score = float(c2st(ref, npe_samples, seed=0))
     print(f"NPE                 C2ST: {npe_score:.4f}")

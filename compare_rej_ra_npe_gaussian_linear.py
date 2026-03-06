@@ -143,6 +143,7 @@ def evaluate_methods(task_name="gaussian_linear", budgets=(1000, 10000), obs_lis
                 num_observation=obs,
                 num_simulations=budget,
                 num_samples=NUM_POST_SAMPLES,
+                num_rounds=1,
             )
 
             ref = task.get_reference_posterior_samples(num_observation=obs)

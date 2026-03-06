@@ -48,3 +48,7 @@ def mean_mmd_over_dims(theta: np.ndarray, theta_ref: np.ndarray) -> dict:
     }
 
 
+
+
+
+
